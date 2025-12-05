@@ -72,7 +72,7 @@ Steps
 
 Clone the repository
 
-git clone [https://github.com/sooperabdullah/data-structure-visualizer.git](https://github.com/your-username/Data-Structures-Visualizer.git)
+git clone [https://github.com/sooperabdullah/DataStructures-Visualizer.git](https://github.com/your-username/Data-Structures-Visualizer.git)
 cd data-structure-visualizer
 
 
