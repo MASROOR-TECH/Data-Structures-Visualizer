@@ -72,7 +72,7 @@ Steps
 
 Clone the repository
 
-git clone [https://github.com/your-username/data-structure-visualizer.git](https://github.com/your-username/data-structure-visualizer.git)
+git clone [https://github.com/sooperabdullah/data-structure-visualizer.git](https://github.com/your-username/data-structure-visualizer.git)
 cd data-structure-visualizer
 
 
@@ -85,16 +85,16 @@ python -m http.server 8000
 
 
 Using VS Code:
-Install the "Live Server" extension, right-click index1.html, and select "Open with Live Server".
+Install the "Live Server" extension, right-click index.html, and select "Open with Live Server".
 
 Run the App
-Open your browser and navigate to http://localhost:8000/index1.html.
+Open your browser and navigate to http://localhost:8000/index.html.
 
 📂 Project Structure
 
 ├── 📁 project
-│   ├── index1.html          # Landing Page
-│   ├── index.html           # Main Visualization Dashboard
+│   ├── index.html          # Landing Page
+│   ├── index1.html           # Main Visualization Dashboard
 │   ├── style.css            # Styling & Dark Theme
 │   ├── visualizer.js        # Emscripten Glue Code (Auto-generated)
 │   ├── visualizer.wasm      # Compiled Binary Logic
