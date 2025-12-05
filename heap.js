@@ -1,5 +1,3 @@
-// File: heap.js
-// Contains logic specific to the Binary Heap visualizer.
 
 const HeapApp = {
     // WASM function references
