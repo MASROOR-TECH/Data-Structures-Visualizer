@@ -1,5 +1,3 @@
-// File: graph.js
-// Contains logic specific to the Graph visualizer (BFS, DFS, Dijkstra, Prim's).
 
 const GraphApp = {
     // WASM function references
@@ -119,7 +117,6 @@ const GraphApp = {
             loop.setAttribute('stroke-width', strokeWidth);
             svg.appendChild(loop);
 
-            // Optional: small arrowhead on the loop
             const arrow = document.createElementNS('http://www.w3.org/2000/svg', 'path');
             arrow.setAttribute('d',
                 `M ${p1.x} ${p1.y - loopRadius - 12} 
@@ -311,7 +308,6 @@ const GraphApp = {
         const data = callCppAndParseJson(func, startNode);
 
         if (data && data.steps && data.steps.length > 0) {
-            // Filter out initial/final summary strings (first and last objects are usually final data)
             this.algorithmSteps = data.steps.filter(s => typeof s === 'object');
             
             // Process the final result step immediately to save final edges/costs
@@ -341,8 +337,6 @@ const GraphApp = {
     startDFS: function() { this.startAlgorithm('DFS'); },
     startDijkstra: function() { this.startAlgorithm('DIJKSTRA'); },
     startPrims: function() { this.startAlgorithm('PRIMS'); },
-
-    // Unified step function called by the 'Next Step' button
     stepAlgorithm: function() {
         if (this.currentStepIndex >= this.algorithmSteps.length) {
             logStep(`${this.currentAlgorithm} Complete!`, 'success');
