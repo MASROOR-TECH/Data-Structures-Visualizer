@@ -1,5 +1,3 @@
-// File: hash.js
-// Contains logic specific to the Hash Table visualizer (Chaining).
 
 const HashApp = {
     // WASM function references
@@ -82,7 +80,6 @@ const HashApp = {
 
     search: function() {
         if (!this.bindingsReady) return;
-        // FIX: Using hash-insert-key as the source for the value (since hash-search-key is missing in HTML)
         const value = this.getInputValue('hash-insert-key', 'Search');
         if (isNaN(value)) return;
         
@@ -102,7 +99,6 @@ const HashApp = {
     
     delete: function() {
         if (!this.bindingsReady) return;
-        // FIX: Using hash-insert-key as the source for the value (since hash-delete-key is missing in HTML)
         const value = this.getInputValue('hash-insert-key', 'Deletion');
         if (isNaN(value)) return;
         
