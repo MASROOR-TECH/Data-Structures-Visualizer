@@ -1,5 +1,3 @@
-// File: avl.js
-// Contains logic specific to the AVL Tree visualizer, including rotation animation.
 
 const AVLApp = {
     // WASM function references
@@ -17,7 +15,7 @@ const AVLApp = {
     // Layout control variables
     nodeRadius: 15,
     hSpacing: 65, // Increased horizontal spacing unit
-    vSpacing: 70, // Fixed vertical spacing between levels
+    vSpacing: 70,
     layoutContext: { x: 0, y: 0, positions: new Map() }, // Stores calculated (x, y) coordinates
     
     initializeBindings: function() {
@@ -59,7 +57,6 @@ const AVLApp = {
         
         if (resultState && resultState.action !== 'error') {
             this.currentTreeState = resultState.tree;
-            // FIX: Ensure logs are filtered to remove initial 'Inserted node X' message 
             this.animationSteps = resultState.steps.filter(s => typeof s === 'string' && !s.includes('Inserted node'));
             this.stepIndex = 0;
             
@@ -82,13 +79,11 @@ const AVLApp = {
         
         if (resultState && resultState.action !== 'error') {
             this.currentTreeState = resultState.tree;
-            // FIX: Ensure logs are filtered to remove initial 'Deletion of X started' message 
             this.animationSteps = resultState.steps.filter(s => typeof s === 'string' && !s.includes('Deletion of '));
             this.stepIndex = 0;
             
             document.querySelectorAll('#avl-view .controls button').forEach(btn => btn.disabled = true);
             
-            // Initial redraw with deletion highlight
             this.updateVisualization({ tree: this.currentTreeState, focus: key, rotation: null });
             this.animateSteps();
         }
@@ -111,7 +106,6 @@ const AVLApp = {
         let focusNode = stepMessage.match(/at (\d+)/) ? parseInt(stepMessage.match(/at (\d+)/)[1], 10) : null;
         let rotationType = stepMessage.match(/(LL|RR|LR|RL) Case/) ? stepMessage.match(/(LL|RR|LR|RL)/)[0] : null;
 
-        // Redraw the tree with the rotation/focus highlighted
         this.updateVisualization({ tree: this.currentTreeState, focus: focusNode, rotation: rotationType });
 
         this.stepIndex++;
@@ -122,9 +116,6 @@ const AVLApp = {
         document.getElementById('avl-canvas').innerHTML = '<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" fill="#ccc">AVL Tree is Empty</text>';
     },
     
-    // --- LAYOUT AND DRAWING CORE FIX ---
-
-    // 1. Recursive function to calculate node X, Y coordinates (In-Order Traversal)
     calculatePosition: function(node, depth) {
         if (!node || node === 'null') return;
 
@@ -173,7 +164,6 @@ const AVLApp = {
         this.drawNodesAndEdges(svgCanvas, tree, offsetX, state.focus, state.rotation);
     },
 
-    // FIX: Simplified recursive drawing to handle connections and nodes in one pass (Root -> Children)
     drawNodesAndEdges: function(svg, node, offsetX, focusNode, rotationType, parentX = 0, parentY = 0) {
         if (!node || node === 'null') return;
         
@@ -186,7 +176,6 @@ const AVLApp = {
 
         // --- 1. Draw Edge to Parent (must be before the node itself) ---
         if (!isRoot) {
-            // FIX: Draw simple line connecting current node's center to parent's center
             const lineConn = document.createElementNS('http://www.w3.org/2000/svg', 'line');
             lineConn.setAttribute('x1', parentX); 
             lineConn.setAttribute('y1', parentY + nodeRadius); // Start below parent circle
