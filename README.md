@@ -78,17 +78,10 @@ cd data-structure-visualizer
 
 Start a Local Server
 
-Using Python (Recommended):
-
-# Python 3.x
-python -m http.server 8000
-
-
 Using VS Code:
 Install the "Live Server" extension, right-click index.html, and select "Open with Live Server".
 
 Run the App
-Open your browser and navigate to http://localhost:8000/index.html.
 
 📂 Project Structure
 
