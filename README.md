@@ -1,128 +1,87 @@
-# Data Structure Visualizer 🌳📊
+# **Data Structure Visualizer – Interactive Algorithm Exploration Tool (WebAssembly + C++)**
 
-An interactive, real-time web application to visualize fundamental data structures and algorithms. Built with a high-performance C++ backend compiled to WebAssembly (WASM), interacting with a modern JavaScript frontend.
+## **Project Overview**
 
-🚀 Overview
+*Data Structure Visualizer* is a fully interactive, real-time web application that demonstrates the internal functioning of fundamental data structures and algorithms.  
+The project uses a **high-performance C++ backend**, compiled to **WebAssembly (WASM)** using Emscripten, and a **JavaScript-based frontend** that renders all structural changes using **SVG graphics**.
 
-Understanding data structures through code alone can be abstract and difficult. This project bridges the gap by providing dynamic, visual feedback for operations like tree rotations, graph traversals, and heap manipulations.
+All data structures—including AVL Trees, Min Heaps, Hash Tables, and Graph algorithms—are manually implemented in C++ (without STL containers for core structures) to reveal raw algorithmic workflows.
 
-The core logic for all data structures is written in C++ for performance and compiled using Emscripten into a .wasm binary. The frontend uses JavaScript to communicate with this binary, rendering the state changes on an SVG canvas.
+This project was created as part of a systems-level programming assignment focusing on performance, visualization, and low-level algorithmic understanding.
 
-✨ Features
+---
 
-1. 🌲 AVL Tree
+## **Features**
 
-Self-Balancing: Visualizes automatic rotations (LL, RR, LR, RL) in real-time.
+### **1. AVL Tree**
+- **Self-balancing BST with real-time visual updates**  
+- **Rotations visualized:** LL, RR, LR, RL  
+- **Supported operations:** Insert, Delete  
+- Displays **node heights** and **balance factors** dynamically  
+- Shows every structural change as it occurs  
 
-Operations: Insert, Delete.
+---
 
-Visuals: Shows node height and balance factors dynamically.
+### **2. Min Heap**
+- **Binary Min-Heap** with full visualization  
+- Shows **percolate-up** and **percolate-down** operations step-by-step  
+- **Operations:** Insert, Extract-Min  
+- **Dual views:**  
+  - Tree structure  
+  - Backing array memory layout  
 
-2. 📉 Min Heap
+---
 
-Binary Heap Property: Visualizes the PerculateUp and PerculateDown operations.
+### **3. Graph Algorithms**
+- Interactive creation of **vertices** and **weighted edges**  
+- Implements major algorithms with complete animations:
 
-Operations: Insert, Extract Minimum.
+  - **BFS** (Queue-based traversal)  
+  - **DFS** (Stack-based traversal)  
+  - **Dijkstra's Shortest Path** (Priority Queue)  
+  - **Prim’s MST Algorithm**  
 
-Views: Dual-view support showing both the Tree structure and the underlying Array memory.
+- Highlights visiting order, processed nodes, and path states in real-time  
 
-3. 🕸 Graph Algorithms
+---
 
-Graph Construction: Add vertices and weighted edges interactively.
+### **4. Hash Table**
+- Implements **Separate Chaining** using linked lists  
+- **Operations:** Insert, Search, Delete  
+- Visualizes:
+  - Buckets  
+  - Pointer chains  
+  - Collision handling  
+- Shows exactly how data flows through the structure  
 
-Algorithms:
+---
 
-BFS: Breadth-First Search visualization using a Queue.
+## **Tech Stack**
 
-DFS: Depth-First Search visualization using a Stack.
+- **Core Logic:** C++  
+- **Compilation:** Emscripten (C++ → WebAssembly)  
+- **Frontend:** HTML5, CSS3, JavaScript  
+- **Rendering Engine:** SVG (Scalable Vector Graphics)  
 
-Dijkstra: Shortest Path visualization using a Priority Queue.
+Communication between frontend and WASM uses **Module.cwrap** bridges.
 
-Prim's: Minimum Spanning Tree (MST) visualization.
+---
 
-4. 🔑 Hash Table
+## **Installation & Usage**
 
-Collision Resolution: Visualizes Separate Chaining using linked lists.
+> Browsers do not allow loading `.wasm` files directly from the `file://` protocol.  
+> A **local web server is required**.
 
-Operations: Insert, Search, Delete.
+### **Prerequisites**
+- Modern browser (Chrome, Firefox, Edge)  
+- Local server environment  
+  - Python HTTP server  
+  - VS Code Live Server  
+  - Node.js http-server  
 
-Visuals: Displays buckets and pointer chains clearly.
+---
 
-🛠 Tech Stack
-
-Core Logic: C++ (No STL containers used for Graph structures to demonstrate raw implementation).
-
-Compilation: Emscripten (C++ $\to$ WebAssembly).
-
-Frontend: HTML5, CSS3, Vanilla JavaScript.
-
-Visualization: Scalable Vector Graphics (SVG).
-
-⚙ Installation & Usage
-
-Important Note: Due to browser security restrictions regarding loading WebAssembly (.wasm) files from the local file system (file:// protocol), you must run this project on a local web server.
-
-Prerequisites
-
-A modern web browser (Chrome, Firefox, Edge).
-
-A basic local server (e.g., Python, VS Code Live Server, Node.js).
-
-Steps
-
-Clone the repository
-
-git clone [https://github.com/sooperabdullah/Data-Structures-Visualizer.git](https://github.com/your-username/Data-Structures-Visualizer.git)
+### **1. Clone the Repository**
+```bash
+git clone https://github.com/MASROOR-TECH/Data-Structures-Visualizer.git
 cd data-structure-visualizer
-
-
-Start a Local Server
-
-Using VS Code:
-Install the "Live Server" extension, right-click index.html, and select "Open with Live Server".
-
-Run the App
-
-📂 Project Structure
-
-├── 📁 project
-│   ├── index.html          # Landing Page
-│   ├── index1.html           # Main Visualization Dashboard
-│   ├── style.css            # Styling & Dark Theme
-│   ├── visualizer.js        # Emscripten Glue Code (Auto-generated)
-│   ├── visualizer.wasm      # Compiled Binary Logic
-│   ├── main.js              # Frontend UI Controller
-│   │
-│   ├── avl.cpp / avl.js     # AVL Tree Logic & UI
-│   ├── min.cpp / heap.js    # Min Heap Logic & UI
-│   ├── hash.cpp / hash.js   # Hash Table Logic & UI
-│   ├── graph.cpp / graph.js # Graph Algos Logic & UI
-│   │
-│   └── wasm_bindings.cpp    # C++ Interface exposed to JS
-
-
-🧠 How It Works (Architecture)
-
-Action: User clicks "Insert 10" in the AVL interface.
-
-JS Call: avl.js calls the C++ function avl_insert(10) via the Module.cwrap bridge.
-
-Processing: C++ allocates memory, inserts the node, balances the tree, and records every logical step (e.g., "Left Rotate on Node 5").
-
-Response: C++ returns a JSON string containing the new tree structure and the log of steps.
-
-Render: JavaScript parses the JSON and animates the SVG elements to reflect the changes.
-
-🤝 Contributing
-
-Contributions are welcome!
-
-Fork the project.
-
-Create your feature branch (git checkout -b feature/AmazingFeature).
-
-Commit your changes (git commit -m 'Add some AmazingFeature').
-
-Push to the branch (git push origin feature/AmazingFeature).g
-
-Open a Pull Request.
