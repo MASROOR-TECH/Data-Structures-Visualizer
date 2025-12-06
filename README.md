@@ -1,4 +1,4 @@
-Data Structure Visualizer 🌳📊
+# Data Structure Visualizer 🌳📊
 
 An interactive, real-time web application to visualize fundamental data structures and algorithms. Built with a high-performance C++ backend compiled to WebAssembly (WASM), interacting with a modern JavaScript frontend.
 
